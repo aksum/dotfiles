@@ -1,0 +1,98 @@
+---
+# run ansible-playbook setup-env.yml -c local
+- hosts: all
+  gather_facts: no
+
+  vars:
+    env_user: pedro
+    env_user_home: "/home/{{ env_user }}"
+    env_src: "/home/{{ env_user }}/Documents/dotfiles/dotfiles"
+
+  tasks:
+    - name: update and upgrade before proceeding
+      apt:
+        update_cache: yes
+#        upgrade: yes
+      become: yes
+
+    - name: install tools
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - vim
+        - tmux
+        - git
+        - python-pip
+        - ranger
+        - ncdu
+        - lnav
+        - htop
+      become: yes
+
+    - name: download pathogen into .vim directory
+      git:
+        repo: "https://github.com/tpope/vim-pathogen.git"
+        dest: "/home/{{ env_user }}/.vim/"
+        clone: yes
+      become: yes
+      become_user: "{{ env_user }}"
+
+    - name: create vim bundle directory
+      file:
+        path: "/home/{{ env_user }}/.vim/{{ item }}"
+        state: directory
+        owner: "{{ env_user }}"
+        group: "{{ env_user }}"
+      with_items:
+        - bundle
+
+    - name: install vim plugins in bundle directory
+      git:
+        repo: "{{ item }}"
+        dest: "/home/{{ env_user }}/.vim/bundle/{{ item | basename }}"
+        clone: yes
+        force: yes
+      with_items:
+        - "https://github.com/scrooloose/nerdtree"
+        - "https://github.com/xuyuanp/nerdtree-git-plugin"
+        - "https://github.com/pearofducks/ansible-vim"
+        - "https://github.com/ekalinin/dockerfile.vim"
+        - "https://github.com/bling/vim-airline"
+        - "https://github.com/vim-airline/vim-airline-themes"
+        - "https://github.com/tpope/vim-fugitive"
+        - "https://github.com/airblade/vim-gitgutter"
+        - "https://github.com/mhinz/vim-signify"
+        - "https://github.com/mbbill/undotree"
+        - "https://github.com/sjl/badwolf"
+        - "https://github.com/liuchengxu/space-vim-dark"
+      become: yes
+      become_user: "{{ env_user }}"
+      tags:
+        - vim-plugins
+
+    - block:
+      - name: get list of dotfiles to import
+        find:
+          path: "{{ env_src }}"
+          hidden: yes
+        register: dotfiles
+
+# Just another debug session!
+#  - debug: msg={{ item.path | basename }}
+#    with_items:
+#      - "{{ dotfiles.files }}"
+
+      - name: create symlinks
+        file:
+          src: "{{ item.path }}"
+          dest: "{{ env_user_home }}/{{ item.path | basename }}"
+          owner: "{{ env_user }}"
+          group: "{{ env_user }}"
+          state: link
+          force: yes
+        with_items:
+          - "{{ dotfiles.files }}"
+
+      tags:
+        - vim-dotfiles

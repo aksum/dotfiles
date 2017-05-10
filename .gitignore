@@ -1,0 +1,11 @@
+*.swp
+*.zip
+*.retry
+*.log
+/.vagrant
+/.molecule
+/.cache
+/tests/.vagrant
+/tests/*.retry
+/tests/*.pyc
+/tests/__pycache__
