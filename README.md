@@ -51,6 +51,8 @@ Install the following packages:
 
 ## Tests
 
+Hint! molecule does not destroy instance(s) upon error. run 'molecule destroy' to destroy instance.
+
 - Test playbook: `molecule test`
 - Run tests on debian: `molecule test --platform triggi/debian`
 - Run tests on ubuntu: `molecule test --platform triggi/ubuntu`
@@ -61,8 +63,6 @@ Install the following packages:
   - `molecule idempotence`: provisions instances and parses output to determine idempotence 
   - `molecule verify`: performs verification steps on running instances
   - `molecule login`: initiates an interactive ssh session with the given host
-
-Hint! molecule does not destroy instance(s) upon error. run 'molecule destroy' to destroy instance.
 
 ## TODO
 
