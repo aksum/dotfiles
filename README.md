@@ -52,7 +52,9 @@ Install the following packages:
 ## Tests
 
 - Run complete test suite: `molecule test`
-- Troubleshoot: `molecule create | molecule converge | molecule verify | molecule login`
+- Run test on debian: `molecule test --platform triggi/debian`
+- Run test on ubuntu: `molecule test --platform triggi/ubuntu`
+- Troubleshoot: `molecule create | molecule converge | molecule idempotence | molecule verify | molecule login`
 
 Hint! molecule does not destroy instance(s) upon error. run 'molecule destroy' to destroy instance.
 
