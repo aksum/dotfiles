@@ -51,10 +51,16 @@ Install the following packages:
 
 ## Tests
 
-- Run complete test suite: `molecule test`
-- Run test on debian: `molecule test --platform triggi/debian`
-- Run test on ubuntu: `molecule test --platform triggi/ubuntu`
-- Troubleshoot: `molecule create | molecule converge | molecule idempotence | molecule verify | molecule login`
+- Test playbook: `molecule test`
+- Run tests on debian: `molecule test --platform triggi/debian`
+- Run tests on ubuntu: `molecule test --platform triggi/ubuntu`
+
+- Troubleshoot: 
+  - `molecule create`: creates all instances defined in molecule.yml
+  - `molecule converge`: provisions all instances defined in molecule.yml 
+  - `molecule idempotence`: provisions instances and parses output to determine idempotence 
+  - `molecule verify`: performs verification steps on running instances
+  - `molecule login`: initiates an interactive ssh session with the given host
 
 Hint! molecule does not destroy instance(s) upon error. run 'molecule destroy' to destroy instance.
 
