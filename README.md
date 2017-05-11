@@ -1,5 +1,6 @@
 dotfiles
 ========
+[![Run Status](https://api.shippable.com/projects/59138b5f2df7f30700a2cf72/badge?branch=master)](https://app.shippable.com/github/aksum/dotfiles)
 
 Only tested on Debian/Ubuntu!
 
