@@ -1,41 +1,23 @@
 ---
 ansible:
   playbook: 'tests/playbook.yml'
-  inventory_file: 'tests/inventory'
-  host_key_checking: False
-  raw_ssh_args:
-    - -o IdentitiesOnly=yes
-    - -o ControlMaster=auto
-    - -o ControlPersist=60s
-  ansiblecfg_ssh_connection:
-    pipelining: True
-  verbose: vvv
+  verbose: vv
 
 driver:
-  name: vagrant
-vagrant:
-  raw_config_args:
-    - "ssh.insert_key = false"
-  platforms:
-    - name: triggi-ubuntu
-      box: triggi/ubuntu-16.04.2
-    - name: triggi/debian
-      box: triggi/debian-8.8.0
-  providers:
-    - name: virtualbox
-      type: virtualbox
-      options:
-        memory: 512
-        cpus: 1
-  instances:
-    - name: tools
+  name: docker
+docker:
+  containers:
+    - name: dotfiles
+      image: 'aksum/docker-debian8-ansible'
+      image_version: 'latest'
+      privileged: True
+      cap_add:
+        - SYS_ADMIN
+      command: '/lib/systemd/systemd'
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
       ansible_groups:
-        - tools
-      interfaces:
-        - network_name: private_network
-          type: static
-          ip: 192.168.10.4
-          auto_config: true
+        - dotfiles
 
 verifier:
   name: testinfra

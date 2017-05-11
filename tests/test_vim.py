@@ -10,8 +10,8 @@ def test_vim_is_installed(host):
 
 
 def test_vim_file(host):
-    f = host.file("/home/vagrant/.vimrc")
+    f = host.file("/home/root/.vimrc")
     assert f.exists
     assert f.is_file
-    assert f.user == 'vagrant'
-    assert f.group == 'vagrant'
+    assert f.user == 'root'
+    assert f.group == 'root'

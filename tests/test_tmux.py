@@ -10,8 +10,8 @@ def test_tmux_is_installed(host):
 
 
 def test_tmux_file(host):
-    f = host.file("/home/vagrant/.tmux.conf")
+    f = host.file("/home/root/.tmux.conf")
     assert f.exists
     assert f.is_file
-    assert f.user == 'vagrant'
-    assert f.group == 'vagrant'
+    assert f.user == 'root'
+    assert f.group == 'root'
