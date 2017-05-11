@@ -10,6 +10,7 @@ build:
     pull: true
 
   ci:
+    - pip install -U setuptools
     - pip install ansible
     - pip install molecule
     - pip install ansible-lint
