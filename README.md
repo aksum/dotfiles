@@ -43,6 +43,7 @@ Install the following packages:
   - nerdtree-git-plugin
   - space-vim-dark
   - undotree
+  - lexima
   - vim-afterglow
   - vim-airline-themes
   - vim-fugitive

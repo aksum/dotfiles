@@ -64,6 +64,7 @@
         - "https://github.com/airblade/vim-gitgutter"
         - "https://github.com/mhinz/vim-signify"
         - "https://github.com/mbbill/undotree"
+        - "https://github.com/cohama/lexima.vim"
         - "https://github.com/sjl/badwolf"
         - "https://github.com/liuchengxu/space-vim-dark"
       become: yes
