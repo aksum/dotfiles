@@ -44,6 +44,7 @@ Install the following packages:
   - space-vim-dark
   - undotree
   - lexima
+  - VimCompletesMe
   - vim-afterglow
   - vim-airline-themes
   - vim-fugitive
