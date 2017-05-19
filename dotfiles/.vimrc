@@ -87,6 +87,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" avoid ex mode at all costs!
+nnoremap Q <nop>
 " jk is escape
 inoremap jk <esc>
 " move vertically by visual line
