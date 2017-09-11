@@ -46,6 +46,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'badwolf'
 
 " ansible-vim tweaks
+let g:ansible_unindent_after_newline = 1
 let g:ansible_attribute_highlight = "ob"
 let g:ansible_name_highlight = 'd'
 let g:ansible_extra_keywords_highlight = 1
