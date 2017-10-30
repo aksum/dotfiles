@@ -19,6 +19,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 set tabstop=2
 " number of spaces of tab when in edit mode
 set softtabstop=2
+" number of spaces to indent
+set shiftwidth=2
 " turn tabs into spaces
 set expandtab
 " show line numbers
