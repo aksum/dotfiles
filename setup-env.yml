@@ -28,6 +28,8 @@
         - ncdu
         - lnav
         - htop
+        - iotop
+        - nethogs
       become: yes
 
     - name: download pathogen into .vim directory

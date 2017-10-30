@@ -39,6 +39,8 @@ set lazyredraw
 set magic
 " Show matching brackets when text indicator is over them
 set showmatch
+" Vim's spell checker
+" set spell spelllang=en
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
