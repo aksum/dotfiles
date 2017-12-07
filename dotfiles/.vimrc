@@ -6,7 +6,7 @@ filetype plugin indent on
 " Set theme
 colorscheme space-vim-dark
 hi Comment cterm=italic
-" Enable statusline 
+" Enable statusline
 set laststatus=2
 " display current git branch
 set statusline+=%{fugitive#statusline()}
@@ -41,6 +41,8 @@ set lazyredraw
 set magic
 " Show matching brackets when text indicator is over them
 set showmatch
+" Delete trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
 " Vim's spell checker
 " set spell spelllang=en
 
