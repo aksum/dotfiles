@@ -43,6 +43,7 @@ Install the following packages:
   - nerdtree-git-plugin
   - space-vim-dark
   - undotree
+  - commentary
   - lexima
   - VimCompletesMe
   - vim-afterglow
@@ -60,10 +61,10 @@ Hint! molecule does not destroy instance(s) upon error. run 'molecule destroy' t
 - Run tests on debian: `molecule test --platform triggi/debian`
 - Run tests on ubuntu: `molecule test --platform triggi/ubuntu`
 
-- Troubleshoot: 
+- Troubleshoot:
   - `molecule create`: creates all instances defined in molecule.yml
-  - `molecule converge`: provisions all instances defined in molecule.yml 
-  - `molecule idempotence`: provisions instances and parses output to determine idempotence 
+  - `molecule converge`: provisions all instances defined in molecule.yml
+  - `molecule idempotence`: provisions instances and parses output to determine idempotence
   - `molecule verify`: performs verification steps on running instances
   - `molecule login`: initiates an interactive ssh session with the given host
 
