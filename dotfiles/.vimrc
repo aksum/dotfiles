@@ -108,6 +108,14 @@ nnoremap E $
 nmap <leader>w :w!<CR>
 " quit without saving
 nmap <leader>qq :q!<CR>
+
 " MRU
 let MRU_Max_Entries = 400
 nnoremap <leader>f :MRU<CR>
+
+" Buffers
+" close all the buffers
+map <leader>ba :bufdo bd<CR>
+" move around buffers
+map <leader>l :bnext<CR>
+map <leader>h :bprevious<CR>
