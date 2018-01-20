@@ -108,3 +108,6 @@ nnoremap E $
 nmap <leader>w :w!<CR>
 " quit without saving
 nmap <leader>qq :q!<CR>
+" MRU
+let MRU_Max_Entries = 400
+nnoremap <leader>f :MRU<CR>

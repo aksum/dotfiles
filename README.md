@@ -44,6 +44,7 @@ Install the following packages:
   - space-vim-dark
   - undotree
   - commentary
+  - MRU
   - lexima
   - VimCompletesMe
   - vim-afterglow

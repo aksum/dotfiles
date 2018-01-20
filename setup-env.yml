@@ -69,6 +69,7 @@
         - "https://github.com/cohama/lexima.vim"
         - "https://github.com/ajh17/VimCompletesMe"
         - "https://github.com/tpope/vim-commentary"
+        - "https://github.com/vim-scripts/mru.vim"
         - "https://github.com/sjl/badwolf"
         - "https://github.com/liuchengxu/space-vim-dark"
       become: yes
