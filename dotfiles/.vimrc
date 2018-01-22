@@ -113,6 +113,9 @@ nmap <leader>qq :q!<CR>
 let MRU_Max_Entries = 400
 nnoremap <leader>f :MRU<CR>
 
+" CWD
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
 " Buffers
 " close all the buffers
 map <leader>ba :bufdo bd<CR>
