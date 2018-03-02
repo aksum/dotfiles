@@ -53,6 +53,7 @@ Install the following packages:
   - vim-gitgutter
   - vim-monokai
   - vim-signify
+  - syntastic
 
 ## Tests
 

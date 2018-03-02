@@ -12,7 +12,6 @@
     - name: update and upgrade before proceeding
       apt:
         update_cache: yes
-#        upgrade: yes
       become: yes
 
     - name: install tools
@@ -72,6 +71,7 @@
         - "https://github.com/vim-scripts/mru.vim"
         - "https://github.com/sjl/badwolf"
         - "https://github.com/liuchengxu/space-vim-dark"
+        - "https://github.com/scrooloose/syntastic"
       become: yes
       become_user: "{{ env_user }}"
       tags:

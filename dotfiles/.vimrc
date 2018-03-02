@@ -8,7 +8,7 @@ colorscheme space-vim-dark
 hi Comment cterm=italic
 " Enable statusline
 set laststatus=2
-" display current git branch
+" Display current git branch
 set statusline+=%{fugitive#statusline()}
 " Open NERDTree automatically when vim starts up
 autocmd vimenter * NERDTree
@@ -45,13 +45,28 @@ set showmatch
 autocmd BufWritePre * :%s/\s\+$//e
 " Vim's spell checker
 " set spell spelllang=en
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_ansible_checkers = ['ansible_lint']
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'badwolf'
 
-" ansible-vim tweaks
+" ansible-vim
+au BufRead,BufNewFile */group_vars/*.yml set filetype=ansible
+au BufRead,BufNewFile */host_vars/*.yml set filetype=ansible
+au BufRead,BufNewFile */infra_vars/*.yml set filetype=ansible
+au BufRead,BufNewFile */playbooks/*.yml set filetype=ansible
+au BufRead,BufNewFile */roles/*.yml set filetype=ansible
 let g:ansible_unindent_after_newline = 1
 let g:ansible_attribute_highlight = "ob"
 let g:ansible_name_highlight = 'd'
