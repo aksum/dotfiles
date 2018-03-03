@@ -57,9 +57,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_ansible_checkers = ['ansible_lint']
 
 " Utilsnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<c-a>"
+let g:UltiSnipsJumpForwardTrigger="<c-a>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
