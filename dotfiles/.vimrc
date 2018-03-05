@@ -55,6 +55,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ansible_checkers = ['ansible_lint']
+let g:syntastic_sh_checkers = ['shellcheck', 'sh']
 
 " Utilsnips
 let g:UltiSnipsExpandTrigger="<c-a>"
