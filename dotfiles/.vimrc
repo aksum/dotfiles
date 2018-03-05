@@ -41,14 +41,15 @@ set lazyredraw
 set magic
 " Show matching brackets when text indicator is over them
 set showmatch
-" Delete trailing whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
 " Vim's spell checker
 " set spell spelllang=en
+" Delete trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
