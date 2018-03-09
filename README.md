@@ -53,7 +53,10 @@ Install the following packages:
   - vim-gitgutter
   - vim-monokai
   - vim-signify
+  - vim-snipsible
   - syntastic
+  - utilsnips
+  - promptline
 
 ## Tests
 
