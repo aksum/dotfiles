@@ -79,6 +79,17 @@ let g:ansible_attribute_highlight = "ob"
 let g:ansible_name_highlight = 'd'
 let g:ansible_extra_keywords_highlight = 1
 
+" Terraform
+" manage indentation syntax
+let g:terraform_align = 1
+" custom commentary commentstring
+autocmd FileType terraform setlocal commentstring=#%s
+" run terraform fmt on save
+let g:terraform_fmt_on_save = 1
+
+" Promptline
+let g:promptline_theme = 'badwolf'
+
 " show hidden files in NERDTree
 " let g:NERDTreeShowHidden = 1
 " custom symbols
