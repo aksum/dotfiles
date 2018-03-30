@@ -5,7 +5,7 @@ python:
 
 build:
   pre_ci_boot:
-    image_name: aksum/docker-debian8-ansible
+    image_name: aksum/docker-stretch-ansible
     image_tag: latest
     pull: true
 
@@ -18,4 +18,4 @@ build:
     - pip install docker
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
-    - molecule create && molecule converge && molecule destroy
+    - molecule test

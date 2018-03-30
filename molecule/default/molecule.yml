@@ -25,6 +25,14 @@ provisioner:
     vvv: True
 scenario:
   name: default
+  test_sequence:
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    - verify
+    - destroy
 verifier:
   name: goss
   lint:

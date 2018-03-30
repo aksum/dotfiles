@@ -3,9 +3,7 @@
 ---
 command:
   vim --version:
-    exist-status: 0
-    stdout:
-      - "VIM - Vi IMproved 8"
+    exit-status: 0
 
 file:
   /etc/hosts:
