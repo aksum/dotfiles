@@ -20,3 +20,4 @@ verifier:
   name: goss
   lint:
     name: yamllint
+    enabled: False
