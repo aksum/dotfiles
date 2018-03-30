@@ -1,10 +1,10 @@
 ---
-# tools test file
-- hosts: all
-#  remote_user: vagrant
+- name: Converge
+  hosts: all
+  gather_facts: no
 
   vars:
-    env_user: root
+    env_user: deploy
     env_user_home: "/home/{{ env_user }}"
     env_src: "/home/{{ env_user }}/dotfiles"
 
@@ -29,6 +29,14 @@
         - lnav
         - htop
       become: yes
+
+    - name: create .vim directory
+      file:
+        path: "{{ env_user_home }}/.vim"
+        state: directory
+        owner: "{{ env_user }}"
+        group: "{{ env_user }}"
+        mode: 0755
 
 #[ANSIBLE0004] Git checkouts must contain explicit version
     - name: download pathogen into .vim directory
@@ -79,29 +87,20 @@
         - skip_ansible_lint
 
     - block:
-      - name: download dotfiles
-        copy:
-          src: "../dotfiles"
-          dest: "{{ env_user_home }}"
-          owner: "{{ env_user }}"
-          group: "{{ env_user }}"
-
       - name: get list of dotfiles to import
         find:
-          path: "{{ env_src }}"
+          path: "../../dotfiles"
           hidden: yes
         register: dotfiles
+        delegate_to: localhost
 
-      - name: create symlinks
-        file:
-          src: "{{ item.path }}"
+      - name: import dotfiles
+        copy:
+          src: "../../dotfiles/{{ item.path | basename }}"
           dest: "{{ env_user_home }}/{{ item.path | basename }}"
           owner: "{{ env_user }}"
           group: "{{ env_user }}"
-          state: link
-          force: yes
-        with_items:
-          - "{{ dotfiles.files }}"
+        with_items: "{{ dotfiles.files }}"
 
       tags:
         - vim-dotfiles

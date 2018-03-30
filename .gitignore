@@ -9,3 +9,5 @@
 /tests/*.retry
 /tests/*.pyc
 /tests/__pycache__
+/molecule/default/.molecule
+/molecule/vagrant/.molecule

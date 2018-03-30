@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: dotfiles
+    hostname: dotfiles
+    image: 'aksum/docker-stretch-ansible'
+    privileged: yes
+    command: "/lib/systemd/systemd"
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    capabilities:
+      - "cap-add=SYS_ADMIN"
+
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  options:
+    diff: True
+    vvv: True
+scenario:
+  name: default
+verifier:
+  name: goss
+  lint:
+    name: 'None'

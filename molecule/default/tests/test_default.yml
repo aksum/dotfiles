@@ -1,0 +1,41 @@
+# Molecule managed
+
+---
+command:
+  vim --version:
+    exist-status: 0
+    stdout:
+      - "VIM - Vi IMproved 8"
+
+file:
+  /etc/hosts:
+    exists: true
+    owner: root
+    group: root
+  /home/deploy/.vim:
+    exists: true
+    owner: deploy
+    group: deploy
+    filetype: directory
+  /home/deploy/.vimrc:
+    exists: true
+    owner: deploy
+    group: deploy
+    filetype: file
+  /home/deploy/.tmux.conf:
+    exists: true
+    owner: deploy
+    group: deploy
+    filetype: file
+
+package:
+  vim:
+    installed: true
+
+user:
+  deploy:
+    exists: true
+
+group:
+  deploy:
+    exists: true
