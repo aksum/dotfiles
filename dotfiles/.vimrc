@@ -69,11 +69,11 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'badwolf'
 
 " ansible-vim
-au BufRead,BufNewFile */group_vars/*.yml set filetype=ansible
-au BufRead,BufNewFile */host_vars/*.yml set filetype=ansible
-au BufRead,BufNewFile */infra_vars/*.yml set filetype=ansible
-au BufRead,BufNewFile */playbooks/*.yml set filetype=ansible
-au BufRead,BufNewFile */roles/*.yml set filetype=ansible
+au BufRead,BufNewFile */group_vars/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */host_vars/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */infra_vars/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */roles/*.yml set filetype=yaml.ansible
 let g:ansible_unindent_after_newline = 1
 let g:ansible_attribute_highlight = "ob"
 let g:ansible_name_highlight = 'd'
