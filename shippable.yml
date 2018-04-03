@@ -18,4 +18,4 @@ build:
     - pip install docker
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
-    - molecule test
+    - molecule test -s default

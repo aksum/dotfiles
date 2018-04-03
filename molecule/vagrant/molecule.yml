@@ -1,0 +1,36 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: dotfiles
+    box: triggi/stretch64
+provisioner:
+  name: ansible
+  config_options:
+    ssh_connection:
+      pipelining: True
+  options:
+    diff: True
+    vvv: True
+  lint:
+    name: ansible-lint
+scenario:
+  name: vagrant
+  test_sequence:
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    - verify
+    - destroy
+verifier:
+  name: goss
+  lint:
+    name: 'None'
