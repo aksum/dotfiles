@@ -75,6 +75,7 @@
         - "https://github.com/SirVer/ultisnips"
         - "https://github.com/aksum/vim-snipsible"
         - "https://github.com/edkolev/promptline.vim"
+        - "https://github.com/martinda/jenkinsfile-vim-syntax"
       become: yes
       become_user: "{{ env_user }}"
       tags:

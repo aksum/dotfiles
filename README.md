@@ -57,6 +57,7 @@ Install the following packages:
   - syntastic
   - utilsnips
   - promptline
+  - jenkinsfile-vim-syntax
 
 ## Tests
 
