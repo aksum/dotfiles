@@ -91,8 +91,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-#alias rg='ranger'
-alias lv='exa -bghHlS --git'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -117,38 +115,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-[ -r /home/pedro/.byobu/prompt ] && . /home/pedro/.byobu/prompt   #byobu-prompt#
+if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
-# Terminix VTE FIX!
-if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-fi
 
-# Then, add the following to your .bashrc/.zshrc
-# Invoke GnuPG-Agent the first time we login.
-# Does `~/.gpg-agent-info' exist and points to gpg-agent process accepting signals?
-#if test -f $HOME/.gpg-agent-info && \
-#    kill -0 `cut -d: -f 2 $HOME/.gpg-agent-info` 2>/dev/null; then
-#    GPG_AGENT_INFO=`cat $HOME/.gpg-agent-info | cut -c 16-`
-#else
-#    # No, gpg-agent not available; start gpg-agent
-#    eval `gpg-agent --daemon --no-grab`
-#fi
-#export GPG_TTY=`tty`
-#export GPG_AGENT_INFO
-
-#GPG2
-export GPGKEY=6E66C973
-
-# awless bash completion
-source <(awless completion bash)
-
-# custom commands
-mkcd(){ NAME=$1; mkdir -p "$NAME"; cd "$NAME"; }
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-complete -C /usr/bin/terraform terraform
-# Install Ruby Gems to ~/gems
-export GEM_HOME=$HOME/gems
-export PATH=$HOME/gems/bin:$PATH
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

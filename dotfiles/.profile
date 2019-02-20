@@ -21,7 +21,17 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# set PATH for Rust|Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# set PATH for Golang
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
 # source awesome prompt
-source ~/.shell_prompt.sh
+source $HOME/.shell_prompt.sh

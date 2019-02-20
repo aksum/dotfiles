@@ -1,0 +1,157 @@
+execute pathogen#infect()
+
+syntax on
+filetype plugin indent on
+
+" Set theme
+colorscheme space-vim-dark
+hi Comment cterm=italic
+" Enable statusline
+set laststatus=2
+" Display current git branch
+set statusline+=%{fugitive#statusline()}
+" Open NERDTree automatically when vim starts up
+autocmd vimenter * NERDTree
+" Close NERDTree when all windows get closed
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" number of spaces of tab
+set tabstop=2
+" number of spaces of tab when in edit mode
+set softtabstop=2
+" number of spaces to indent
+set shiftwidth=2
+" turn tabs into spaces
+set expandtab
+" show line numbers
+set number
+" highlight current line
+set cursorline
+" visual autocomplete for command menu
+set wildmenu
+" A buffer becomes hidden when it is abandoned
+set hid
+" Highlight search results
+set hlsearch
+" Makes search act like search in modern browsers
+set incsearch
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+" For regular expressions turn magic on
+set magic
+" Show matching brackets when text indicator is over them
+set showmatch
+" Vim's spell checker
+" set spell spelllang=en
+" Delete trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_ansible_checkers = ['ansible_lint']
+let g:syntastic_sh_checkers = ['shellcheck', 'sh']
+
+" Utilsnips
+let g:UltiSnipsExpandTrigger="<c-a>"
+let g:UltiSnipsJumpForwardTrigger="<c-a>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'badwolf'
+
+" ansible-vim
+au BufRead,BufNewFile */group_vars/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */host_vars/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */infra_vars/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */roles/*.yml set filetype=yaml.ansible
+let g:ansible_unindent_after_newline = 1
+let g:ansible_attribute_highlight = "ob"
+let g:ansible_name_highlight = 'd'
+let g:ansible_extra_keywords_highlight = 1
+
+" Terraform
+" manage indentation syntax
+let g:terraform_align = 1
+" custom commentary commentstring
+autocmd FileType terraform setlocal commentstring=#%s
+" run terraform fmt on save
+let g:terraform_fmt_on_save = 1
+
+" Promptline
+let g:promptline_theme = 'badwolf'
+
+" show hidden files in NERDTree
+" let g:NERDTreeShowHidden = 1
+" custom symbols
+let g:NERDTreeIndicatorMapCustom = {
+\ "Modified"  : "✹",
+\ "Staged"    : "✚",
+\ "Untracked" : "✭",
+\ "Renamed"   : "➜",
+\ "Unmerged"  : "═",
+\ "Deleted"   : "✖",
+\ "Dirty"     : "✗",
+\ "Clean"     : "✔︎",
+\ 'Ignored'   : '☒',
+\ "Unknown"   : "?"
+\ }
+
+" leader is comma
+let mapleader = ","
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+" toggle undotree
+nnoremap <leader>u :UndotreeToggle<CR>
+" change cwd in NERDTree
+nnoremap <leader>d :NERDTree %<CR>
+" toggle NERDTree pane
+nnoremap <leader>hn :NERDTreeToggle<CR>
+" git status
+nnoremap <leader>gs :Gstatus<CR>
+" git diff
+nnoremap <leader>gd :Gdiff<CR>
+" list active buffers
+nnoremap <leader>b :buffers<CR>
+" split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" avoid ex mode at all costs!
+nnoremap Q <nop>
+" jk is escape
+inoremap jk <esc>
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+" fast saving
+nmap <leader>w :w!<CR>
+" quit without saving
+nmap <leader>qq :q!<CR>
+
+" MRU
+let MRU_Max_Entries = 400
+nnoremap <leader>f :MRU<CR>
+
+" CWD
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" Buffers
+" close all the buffers
+map <leader>ba :bufdo bd<CR>
+" move around buffers
+map <leader>l :bnext<CR>
+map <leader>h :bprevious<CR>
