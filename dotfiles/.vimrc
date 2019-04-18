@@ -21,26 +21,33 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-"Plug 'mhinz/vim-signify'
-"Plug 'terryma/vim-multiple-cursors'
+" Plug 'mhinz/vim-signify'
 Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'cohama/lexima.vim'
 Plug 'yegappan/mru'
 Plug 'w0rp/ale'
 Plug 'lifepillar/vim-mucomplete'
-"Plug 'sirver/ultisnips'
-"Plug 'honza/vim-snippets'
-"Plug 'sheerun/vim-polyglot'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+" Plug 'sheerun/vim-polyglot'
+" PlugInstall and PlugUpdate will clone fzf in ~/.fzf and run the install script
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " Colors
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'romainl/Apprentice'
 Plug 'junegunn/seoul256.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 " Syntax
-Plug 'pearofducks/ansible-vim'
+Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; ./generate.py' }
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'jelera/vim-javascript-syntax'
+Plug 'ekalinin/dockerfile.vim'
+Plug 'martinda/jenkinsfile-vim-syntax'
+Plug 'hashivim/vim-terraform'
+"Plug 'jelera/vim-javascript-syntax'
 "Plug 'davidhalter/jedi-vim'
-Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+"Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -81,7 +88,7 @@ set nobackup
 set noswapfile
 
 " Session management
-let g:session_directory = "~/./session"
+let g:session_directory = "~/.vim/sessions"
 let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
@@ -178,11 +185,11 @@ let g:promptline_theme = 'badwolf'
 " Ale
 let g:ale_open_list = 1
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_completion_enabled = 0
 let g:airline#extensions#ale#enabled = 1
-#let g:ale_linters = {'ansible': ['ansible-lint', 'yamllint']}
+"let g:ale_linters = {'ansible': ['ansible-lint', 'yamllint']}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -200,8 +207,12 @@ set completeopt-=preview
 set completeopt+=menuone,noselect
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
+let g:mucomplete#chains = {}
+let g:mucomplete#chains.default = ['ulti', 'path', 'omni', 'keyn', 'dict', 'uspl']
 let g:mucomplete#enable_auto_at_startup = 1
-"call add(g:mucomplete#chains['default'], 'ulti')
+
+" Automatically source vimrc on save.
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 "***
 " Syntax

@@ -34,4 +34,4 @@ export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # source awesome prompt
-source $HOME/.shell_prompt.sh
+. $HOME/.shell_prompt.sh
