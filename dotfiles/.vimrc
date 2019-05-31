@@ -178,7 +178,6 @@ nnoremap <leader>nd :NERDTree %<CR>
 " Ignore
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
-
 " Promptline
 let g:promptline_theme = 'badwolf'
 
@@ -228,6 +227,16 @@ au BufRead,BufNewFile */host_vars/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */infra_vars/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */roles/*.yml set filetype=yaml.ansible
+
+" python
+au BufRead,BufNewFile *.py
+    \ set tabstop=4       |
+    \ set softtabstop=4   |
+    \ set shiftwidth=4    |
+    \ set textwidth=79    |
+    \ set expandtab       |
+    \ set autoindent      |
+    \ set fileformat=unix
 
 " Terraform
 " manage indentation syntax
