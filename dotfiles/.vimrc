@@ -176,7 +176,7 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 " Change CWD
 nnoremap <leader>nd :NERDTree %<CR>
 " Ignore
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,.cache,*.tgz,.vagrant,.npm,.git
 
 " Promptline
 let g:promptline_theme = 'badwolf'
@@ -273,6 +273,11 @@ nnoremap <leader>gs :Gstatus<CR>
 " git diff
 nnoremap <leader>gd :Gdiff<CR>
 
+" fzf and ripgrep
+nnoremap <leader>f :Files<Cr>
+nnoremap <leader>b :Buffers<Cr>
+nnoremap <leader>g :Rg<Cr>
+
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 " toggle undotree
@@ -288,7 +293,7 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Buffers
 " List active buffers
-nnoremap <leader>b :buffers<CR>
+" nnoremap <leader>b :buffers<CR>
 " Close all the buffers
 map <leader>ba :bufdo bd<CR>
 " Move around buffers

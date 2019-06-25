@@ -117,6 +117,8 @@ if ! shopt -oq posix; then
 fi
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
+export EDITOR='vim'
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -128,9 +130,52 @@ export NVM_DIR="$HOME/.nvm"
 export FZF_COMPLETION_TRIGGER='~~'
 # Options to fzf command
 export FZF_COMPLETION_OPTS='+c -x'
-export FZF_DEFAULT_COMMAND='fd --type f'
+# export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d .'
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--layout=reverse --border --bind ctrl-f:page-down,ctrl-b:page-up'
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
+
+# fzf find and replace
+fzf_find_edit() {
+  local file=$(
+    fzf --no-multi --preview 'bat --color=always --line-range :500 {}'
+    )
+  if [[ -n $file ]]; then
+    cd ${file%/*}
+    $EDITOR ${file##*/}
+  fi
+}
+
+alias ffe='fzf_find_edit'
+
+fzf_grep_edit(){
+  if [[ $# == 0 ]]; then
+      echo 'Error: search term was not provided.'
+      return
+  fi
+  local match=$(
+    rg --color=never --line-number "$1" |
+      fzf --no-multi --delimiter : \
+          --preview "bat --color=always --line-range {2}: {1}"
+    )
+  local file=$(echo "$match" | cut -d':' -f1)
+  if [[ -n $file ]]; then
+    $EDITOR $file +$(echo "$match" | cut -d':' -f2)
+  fi
+}
+
+alias fge='fzf_grep_edit'
+
+fzf_kill() {
+  local pids=$(
+    ps -f -u $USER | sed 1d | fzf --multi | tr -s [:blank:] | cut -d' ' -f3
+    )
+  if [[ -n $pids ]]; then
+    echo "$pids" | xargs kill -9 "$@"
+  fi
+}
+
+alias fkill='fzf_kill'
