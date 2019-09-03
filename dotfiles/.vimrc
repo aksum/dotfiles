@@ -45,6 +45,8 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'ekalinin/dockerfile.vim'
 Plug 'martinda/jenkinsfile-vim-syntax'
 Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-vagrant'
+Plug 'jvirtanen/vim-hcl'
 "Plug 'jelera/vim-javascript-syntax'
 "Plug 'davidhalter/jedi-vim'
 "Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
