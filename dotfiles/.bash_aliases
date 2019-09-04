@@ -28,3 +28,12 @@ alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push origin'
 alias gl='tig'
+# argument = service name
+gclone() {
+  if ! [[ -z "$1"  ]]
+  then
+    git clone git@github.com:"${2:-olisto}"/"$1"
+  else
+    echo "Error! Missing argument..."
+  fi
+}
