@@ -34,6 +34,6 @@ gclone() {
   then
     git clone git@github.com:"${2:-olisto}"/"$1"
   else
-    echo "Error! Missing argument..."
+    echo "Error! Missing argument repository name"
   fi
 }

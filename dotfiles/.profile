@@ -35,3 +35,6 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # source awesome prompt
 . $HOME/.shell_prompt.sh
+
+# doctl
+source <(doctl completion bash)

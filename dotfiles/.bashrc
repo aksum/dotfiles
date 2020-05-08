@@ -189,3 +189,4 @@ fzf_kill() {
 }
 
 alias fkill='fzf_kill'
+. "/home/pgomes/.acme.sh/acme.sh.env"

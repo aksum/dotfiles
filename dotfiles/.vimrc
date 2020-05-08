@@ -47,6 +47,7 @@ Plug 'martinda/jenkinsfile-vim-syntax'
 Plug 'hashivim/vim-terraform'
 Plug 'hashivim/vim-vagrant'
 Plug 'jvirtanen/vim-hcl'
+Plug 'nfnty/vim-nftables'
 "Plug 'jelera/vim-javascript-syntax'
 "Plug 'davidhalter/jedi-vim'
 "Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
@@ -227,6 +228,7 @@ let g:ansible_extra_keywords_highlight = 1
 au BufRead,BufNewFile */group_vars/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */host_vars/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */infra_vars/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */provision_vars/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */roles/*.yml set filetype=yaml.ansible
 
