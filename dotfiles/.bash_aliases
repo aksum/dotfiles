@@ -4,6 +4,7 @@ alias lv='exa -bghHlS --git'
 alias ll='ls -alF'
 alias vi='vim'
 alias rgr='ranger'
+alias fd='fdfind'
 # calculator
 alias bc='bc -l'
 alias diff='diff --color=always'
@@ -35,5 +36,17 @@ gclone() {
     git clone git@github.com:"${2:-olisto}"/"$1"
   else
     echo "Error! Missing argument repository name"
+    exit 2
+  fi
+}
+role() {
+  local ROLE_DIR="/home/pgomes/Projects/github.com/roles"
+
+  if ! [[ -z "$1" ]]
+  then
+    cd "$ROLE_DIR/ansible-role-$1" || exit
+  else
+    echo "Error! Missing argument role name"
+    exit 2
   fi
 }

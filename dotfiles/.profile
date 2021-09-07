@@ -27,14 +27,14 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # set PATH for Rust|Cargo
-export PATH="$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/.cargo/bin:$PATH"
 
 # set PATH for Golang
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+# export GOPATH=$HOME/go
+# export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # source awesome prompt
-. $HOME/.shell_prompt.sh
+source $HOME/.shell_prompt.sh
 
 # doctl
 source <(doctl completion bash)
