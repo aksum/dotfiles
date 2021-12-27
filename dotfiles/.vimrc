@@ -17,15 +17,18 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-abolish'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'edkolev/promptline.vim'
 " Plug 'mhinz/vim-signify'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'cohama/lexima.vim'
 Plug 'yegappan/mru'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
+" Plug 'vim-syntastic/syntastic'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
@@ -45,11 +48,12 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'ekalinin/dockerfile.vim'
 Plug 'martinda/jenkinsfile-vim-syntax'
 Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
 Plug 'hashivim/vim-vagrant'
 Plug 'jvirtanen/vim-hcl'
 Plug 'nfnty/vim-nftables'
 "Plug 'jelera/vim-javascript-syntax'
-"Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 "Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 " List ends here. Plugins become visible to Vim after this call.
@@ -160,7 +164,7 @@ let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycach
 " Show hidden files in NERDTree
 " let g:NERDTreeShowHidden = 1
 " Custom symbols
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
 \ "Modified"  : "✹",
 \ "Staged"    : "✚",
 \ "Untracked" : "✭",
@@ -182,7 +186,14 @@ nnoremap <leader>nd :NERDTree %<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,.cache,*.tgz,.vagrant,.npm,.git
 
 " Promptline
-let g:promptline_theme = 'badwolf'
+let g:promptline_theme = 'powerlineclone'
+let g:promptline_preset = {
+  \'b' : [ promptline#slices#python_virtualenv(), promptline#slices#host(), '$USER' ],
+  \'a' : [ promptline#slices#vcs_branch() ],
+  \'c' : [ promptline#slices#cwd() ],
+  \'options': {
+    \'left_sections' : [ 'b', 'a', 'c' ],
+    \'left_only_sections' : [ 'b', 'a', 'c' ]}}
 
 " Ale
 let g:ale_open_list = 1
@@ -190,10 +201,24 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_completion_enabled = 0
+" let g:ale_fixers = {'terraform': ['terraform']}
+let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 " let g:ale_linters = {'ansible': ['ansible-lint']}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" Syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_ansible_ansible_lint_exec = '/home/pgomes/.local/bin/ansible-lint'
+" let g:syntastic_ansible_checkers = ['ansible_lint', 'yamllint']
+" let g:syntastic_sh_checkers = ['shellcheck', 'sh']
 
 " Utilsnips
 let g:UltiSnipsExpandTrigger="<c-a>"
@@ -249,6 +274,10 @@ let g:terraform_align = 1
 autocmd FileType terraform setlocal commentstring=#%s
 " run terraform fmt on save
 let g:terraform_fmt_on_save = 1
+" (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
+let g:terraform_completion_keys = 1
+" (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
+let g:terraform_registry_module_completion = 0
 
 "***
 " Mappings
