@@ -42,6 +42,14 @@ Plug 'romainl/Apprentice'
 Plug 'dracula/vim', { 'as': 'dracula' }
 "" Syntax
 Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; ./generate.sh --style dictionary' }
+Plug 'ekalinin/dockerfile.vim'
+Plug 'martinda/jenkinsfile-vim-syntax'
+Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
+Plug 'hashivim/vim-vagrant'
+Plug 'jvirtanen/vim-hcl'
+Plug 'nfnty/vim-nftables'
+Plug 'davidhalter/jedi-vim'
 
 "" List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -331,3 +339,15 @@ au BufRead,BufNewFile */infra_vars/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */provision_vars/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 au BufRead,BufNewFile */roles/*.yml set filetype=yaml.ansible
+
+"" Terraform
+"" manage indentation syntax
+let g:terraform_align = 1
+"" custom commentary commentstring
+autocmd FileType terraform setlocal commentstring=#%s
+"" run terraform fmt on save
+let g:terraform_fmt_on_save = 1
+"" (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
+let g:terraform_completion_keys = 1
+"" (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
+let g:terraform_registry_module_completion = 0
