@@ -40,12 +40,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'morhetz/gruvbox'
 "" Syntax
 Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; ./generate.sh --style dictionary' }
 Plug 'ekalinin/dockerfile.vim'
 Plug 'martinda/jenkinsfile-vim-syntax'
 Plug 'hashivim/vim-terraform'
-Plug 'juliosueiras/vim-terraform-completion'
+" Plug 'juliosueiras/vim-terraform-completion'
 Plug 'hashivim/vim-vagrant'
 Plug 'jvirtanen/vim-hcl'
 Plug 'nfnty/vim-nftables'
@@ -121,8 +122,9 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 "***
 
 syntax on
-colorscheme apprentice
+colorscheme gruvbox
 set term=xterm-256color
+set termguicolors
 set t_Co=256
 set background=dark
 set ruler
@@ -130,6 +132,8 @@ set ruler
 set number
 "" highlight current line
 set cursorline
+"" highlight current column
+set cursorcolumn
 "" visual autocomplete for command menu
 set wildmenu
 "" Don't redraw while executing macros (good performance config)
@@ -233,7 +237,15 @@ let g:ale_lint_on_text_changed = 'never'
 "" Fixing
 let g:ale_fix_on_save = 1
 "" Completion
+" set omnifunc=ale#completion#OmniFunc
 let g:ale_completion_enabled = 0
+let g:ale_completion_autoimport = 1
+"" Linters
+let g:ale_linters = {
+  \ 'ansible': ['ansible-language-server', 'ansible_lint'],
+  \ 'yaml': ['yamllint']
+  \ }
+let g:ale_linters_explicit = 1
 
 "" Utilsnips
 let g:UltiSnipsExpandTrigger="<C-j>"
@@ -241,7 +253,7 @@ let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
 "" MRU
-let MRU_Max_Entries = 50
+let MRU_Max_Entries = 10
 
 "" Promptline
 let g:promptline_theme = 'powerlineclone'
@@ -254,7 +266,7 @@ let g:promptline_preset = {
     \'left_only_sections' : [ 'b', 'a', 'c' ]}}
 
 "" fzf.vim
-set wildmode=list:longest,list:full
+" set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 

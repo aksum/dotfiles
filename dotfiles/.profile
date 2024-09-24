@@ -38,3 +38,6 @@ source $HOME/.shell_prompt.sh
 
 # doctl
 source <(doctl completion bash)
+
+# 1password cli
+source <(op completion bash)

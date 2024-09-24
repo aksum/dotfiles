@@ -191,3 +191,12 @@ fzf_kill() {
 alias fkill='fzf_kill'
 # source awesome prompt
 # source $HOME/.shell_prompt.sh
+
+# molecule
+eval "$(_MOLECULE_COMPLETE=bash_source molecule)"
+
+# >>>> Vagrant command completion (start)
+. /opt/vagrant/embedded/gems/gems/vagrant-2.4.1/contrib/bash/completion.sh
+# <<<<  Vagrant command completion (end)
+
+complete -C '/usr/local/bin/aws_completer' aws
